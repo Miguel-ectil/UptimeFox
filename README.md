@@ -70,6 +70,25 @@ UptimeFox é um projeto simples de monitoramento de sites com Flask, Celery e Re
 | `POST` | `/verificar` | Dispara verificação manual via Celery    |
 | `GET`  | `/logs`      | Retorna os últimos logs de verificação   |
 
+## ✅ Exemplo de JSON para cadastrar site
+
+``` bash
+POST /sites
+{
+  "url": "https://meusite.com"
+}
+```
+## 💡 Dicas úteis
+
+- A verificação é executada automaticamente a cada 5 minutos por padrão.
+- Os logs são salvos na tabela status_log do banco de dados.
+- Para testar a verificação rapidamente, você pode mudar o agendamento no celery_worker.py para timedelta(seconds=30) durante o desenvolvimento.
+- Se quiser recomeçar a agenda do Beat, pare os serviços e remova os arquivos:
+
+```bash
+  rm celerybeat-schedule*
+```
+
 ## 📍 Checklist de execução
 ``` bash 
     # Em três terminais separados:
