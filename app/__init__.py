@@ -1,17 +1,18 @@
 from flask import Flask
-from app.extensions import db, migrate
-from app.config import Config
-from app.routes import site_routes
+from app.extensions import db, celery  # vamos definir celery lá também
+from app.routes.site_routes import bp as site_bp
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object('app.config.Config')
 
-    # Inicializar extensões
+    # Inicializa extensões
     db.init_app(app)
-    migrate.init_app(app, db)
 
-    # Registrar rotas
-    app.register_blueprint(site_routes.bp)
+    # Registra blueprint(s)
+    app.register_blueprint(site_bp)
+
+    # Registra celery no app.extensions
+    app.extensions['celery'] = celery
 
     return app
