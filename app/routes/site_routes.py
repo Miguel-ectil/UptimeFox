@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.extensions import db
 from app.models.site import Site
+from flask import current_app
 
 bp = Blueprint('site_routes', __name__)
 
@@ -25,3 +26,14 @@ def add_site():
 def list_sites():
     sites = Site.query.all()
     return jsonify([{'id': s.id, 'url': s.url} for s in sites])
+
+
+# rota temporária
+@bp.route('/verificar', methods=['POST'])
+def verificar():
+    celery = current_app.extensions.get('celery')
+    if not celery:
+        return jsonify({'error': 'Celery não inicializado'}), 500
+
+    task = celery.send_task('app.tasks.monitor_tasks.verificar_sites')
+    return jsonify({"message": "Tarefa enviada ao Celery", "task_id": task.id}), 202
