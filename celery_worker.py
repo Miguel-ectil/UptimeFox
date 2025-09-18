@@ -13,7 +13,7 @@ def make_celery(app):
     celery.conf.beat_schedule = {
         'verificar-sites-cada-5-minutos': {
             'task': 'app.tasks.monitor_tasks.verificar_sites',
-            'schedule': timedelta(seconds=30),  # a cada 5 minutos
+            'schedule': timedelta(minute='*/5'),  # a cada 5 minutos
         },
     }
     celery.conf.timezone = 'UTC'  # Ajuste para seu fuso horário, se quiser

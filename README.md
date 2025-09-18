@@ -69,3 +69,28 @@ UptimeFox é um projeto simples de monitoramento de sites com Flask, Celery e Re
 | `GET`  | `/sites`     | Lista todos os sites cadastrados         |
 | `POST` | `/verificar` | Dispara verificação manual via Celery    |
 | `GET`  | `/logs`      | Retorna os últimos logs de verificação   |
+
+## 📍 Checklist de execução
+``` bash 
+    # Em três terminais separados:
+
+    # Terminal 1 - API Flask
+    flask run
+
+    # Terminal 2 - Celery Worker
+    celery -A celery_worker.celery worker --loglevel=info
+
+    # Terminal 3 - Celery Beat
+    celery -A celery_worker.celery beat --loglevel=info
+
+```
+
+## 🔒 Requisitos
+
+- Python 3.11+ (você usa 3.13)
+- Redis instalado e rodando localmente:
+
+``` bash
+    sudo apt install redis-server
+    sudo systemctl start redis
+```
