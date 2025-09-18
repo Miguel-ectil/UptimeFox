@@ -1,0 +1,7 @@
+Flask
+SQLAlchemy
+Flask-Migrate
+requests
+celery
+redis
+python-dotenv
