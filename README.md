@@ -23,7 +23,11 @@ UptimeFox é um projeto simples de monitoramento de sites com Flask, Celery e Re
 ## Como rodar localmente
 
 ```bash
-git clone https://github.com/Miguel-ectil/uptimefox.git
-cd uptimefox
-pip install -r requirements.txt
-flask run
+    git clone https://github.com/Miguel-ectil/uptimefox.git
+    cd uptimefox
+    python -m venv .venv
+    source .venv/bin/activate 
+```
+``` bash
+    pip install -r requirements.txt
+    flask run
