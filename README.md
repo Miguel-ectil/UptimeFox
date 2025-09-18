@@ -1,6 +1,6 @@
 # UptimeFox 🦊
 
-Sistema de monitoramento de sites com status atual, histórico e alertas.
+UptimeFox é um projeto simples de monitoramento de sites com Flask, Celery e Redis. Ele verifica periodicamente se sites estão online e registra os resultados em um banco de dados.
 
 ## Funcionalidades
 
@@ -12,11 +12,14 @@ Sistema de monitoramento de sites com status atual, histórico e alertas.
 
 ## Tecnologias
 
+- Python 3.13
 - Flask (API)
 - Celery + Redis (tarefas agendadas)
 - SQLite (ou PostgreSQL futuramente)
 - SQLAlchemy (ORM)
-
+- Flask-Migrate
+- python-dotenv
+- requests
 ## Como rodar localmente
 
 ```bash
