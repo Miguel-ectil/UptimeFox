@@ -17,11 +17,8 @@ services:
       - "5000:5000"
     depends_on:
       - redis
-    environment:
-      - FLASK_APP=app
-      - FLASK_ENV=development
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=sqlite:///uptime.db
+    env_file:
+      - .env
 
   worker:
     build: .
@@ -32,9 +29,8 @@ services:
     depends_on:
       - redis
       - web
-    environment:
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=sqlite:///uptime.db
+    env_file:
+      - .env
 
   beat:
     build: .
@@ -45,6 +41,5 @@ services:
     depends_on:
       - redis
       - web
-    environment:
-      - REDIS_URL=redis://redis:6379/0
-      - DATABASE_URL=sqlite:///uptime.db
+    env_file:
+      - .env
