@@ -7,7 +7,7 @@ services:
     ports:
       - "6379:6379"
 
-  web:
+  web:ports
     build: .
     container_name: uptimefox-api
     command: flask run --host=0.0.0.0
